@@ -1,0 +1,32 @@
+from random import choice
+
+def run_once(num):
+    balls = {}
+    count = 0
+    for i in range(num):
+        balls[i] = str(i)
+    while True:
+        count += 1
+        x = range(num)
+        firstball = choice(x)
+        x.remove(firstball)
+        secondball = choice(x)
+        balls[secondball] = balls[firstball]
+        y = set(balls.values())
+        if len(y) == 1:
+            break
+    return count    
+
+def run_many(n, times):
+    total  = 0
+    for i in range(times):
+        total += run_once(n)
+    times = float(times)
+    return total / times
+
+print run_many(4, 100000)
+print run_many(4, 100000)
+print run_many(4, 100000)
+print run_many(5, 100000)
+print run_many(5, 100000)
+print run_many(6, 100000)
